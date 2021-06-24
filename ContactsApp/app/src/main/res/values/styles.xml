@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="ToolbarContacts" parent="Widget.AppCompat.Toolbar">
+        <item name="android:layout_height">80dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:background">@color/color_primary</item>
+        <item name="contentInsetStart">0dp</item>
+    </style>
+
+    <style name="SearchViewContacts" parent="Widget.AppCompat.SearchView">
+        <item name="android:layout_margin">8dp</item>
+        <item name="android:paddingStart">-8dp</item>
+        <item name="android:textColor">@color/text_color_black</item>
+        <item name="android:background">@drawable/search_view_background</item>
+        <item name="queryHint">@string/search_view_query_hint</item>
+        <item name="iconifiedByDefault">false</item>
+        <item name="queryBackground">@android:color/transparent</item>
+    </style>
+
+</resources>

@@ -9,4 +9,6 @@
     <color name="text_color_black">#e5000000</color>
     <color name="text_color_grey">#8a000000</color>
     <color name="text_color_clickable">#269df7</color>
+
+    <color name="color_white">#fff</color>
 </resources>
