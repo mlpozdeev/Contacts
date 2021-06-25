@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    tools:viewBindingIgnore="true">
+
+    <TextView
+        android:id="@+id/text_view_contact_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_horizontal"
+        android:layout_marginTop="@dimen/margin_vertical"
+        android:textColor="@color/text_color_black"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@+id/text_view_contact_height"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Carol Rodriguez" />
+
+    <TextView
+        android:id="@+id/text_view_contact_height"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_horizontal"
+        android:layout_marginTop="@dimen/margin_vertical"
+        android:textColor="@color/text_color_black"
+        android:textSize="14sp"
+        app:layout_constraintBaseline_toBaselineOf="@id/text_view_contact_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="195.3" />
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/text_view_phone_number"
+        android:layout_marginHorizontal="@dimen/margin_horizontal"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="@dimen/margin_vertical"
+        android:textSize="14sp"
+        android:textColor="@color/text_color_black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_view_contact_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="+7 (828) 461-2624" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
