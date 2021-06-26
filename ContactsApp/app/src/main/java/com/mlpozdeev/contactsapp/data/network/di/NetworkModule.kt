@@ -14,7 +14,7 @@ import javax.inject.Singleton
 @Module
 class NetworkModule {
     @Provides
-    fun provideContactApi(retrofit: Retrofit): ContactsApi {
+    fun provideContactsApi(retrofit: Retrofit): ContactsApi {
         return retrofit.create(ContactsApi::class.java)
     }
 
@@ -26,7 +26,6 @@ class NetworkModule {
         val okHttpClient = OkHttpClient.Builder()
             .addInterceptor(httpLoggingInterceptor)
             .build()
-        val gson = GsonBuilder()
 
         return Retrofit.Builder()
             .baseUrl("https://raw.githubusercontent.com")
