@@ -3,9 +3,13 @@ package com.mlpozdeev.contactsapp.presentation.fragments.contacts.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.mlpozdeev.contactsapp.domain.usecase.LoadContactsUseCase
 import com.mlpozdeev.contactsapp.presentation.fragments.contacts.model.ContactItem
+import com.mlpozdeev.contactsapp.presentation.fragments.toContactItem
 
-class ContactsViewModel : ViewModel() {
+class ContactsViewModel(
+    private val loadContactsUseCase: LoadContactsUseCase
+) : ViewModel() {
 
     private val mutableContactsLiveData: MutableLiveData<List<ContactItem>> = MutableLiveData()
 
@@ -16,70 +20,8 @@ class ContactsViewModel : ViewModel() {
     }
 
     private fun load() {
-        //test
-        val list = listOf(
-            ContactItem(
-                id = 0,
-                name = "Carol Rodriguez",
-                height = "195.3",
-                phoneNumber = "+7 (828) 461-2624"
-            ),
-            ContactItem(
-                id = 0,
-                name = "Carol Rodriguez",
-                height = "195.3",
-                phoneNumber = "+7 (828) 461-2624"
-            ),
-            ContactItem(
-                id = 0,
-                name = "Carol Rodriguez",
-                height = "195.3",
-                phoneNumber = "+7 (828) 461-2624"
-            ),
-            ContactItem(
-                id = 0,
-                name = "Carol Rodriguez",
-                height = "195.3",
-                phoneNumber = "+7 (828) 461-2624"
-            ),
-            ContactItem(
-                id = 0,
-                name = "Carol Rodriguez",
-                height = "195.3",
-                phoneNumber = "+7 (828) 461-2624"
-            ),
-            ContactItem(
-                id = 0,
-                name = "Carol Rodriguez",
-                height = "195.3",
-                phoneNumber = "+7 (828) 461-2624"
-            ),
-            ContactItem(
-                id = 0,
-                name = "Carol Rodriguez",
-                height = "195.3",
-                phoneNumber = "+7 (828) 461-2624"
-            ),
-            ContactItem(
-                id = 0,
-                name = "Carol Rodriguez",
-                height = "195.3",
-                phoneNumber = "+7 (828) 461-2624"
-            ),
-            ContactItem(
-                id = 0,
-                name = "Carol Rodriguez",
-                height = "195.3",
-                phoneNumber = "+7 (828) 461-2624"
-            ),
-            ContactItem(
-                id = 0,
-                name = "Carol Rodriguez",
-                height = "195.3",
-                phoneNumber = "+7 (828) 461-2624"
-            )
-        )
-
-        mutableContactsLiveData.value = list
+        mutableContactsLiveData.value = loadContactsUseCase.getContacts().map {
+            it.toContactItem()
+        }
     }
 }

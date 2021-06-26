@@ -4,9 +4,11 @@ import android.os.Bundle
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
+import com.mlpozdeev.contactsapp.ContactsApp
 import com.mlpozdeev.contactsapp.R
 import com.mlpozdeev.contactsapp.databinding.FragmentContactsBinding
 import com.mlpozdeev.contactsapp.presentation.fragments.contacts.model.ContactItem
@@ -23,7 +25,15 @@ class ContactsFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        viewModel = ViewModelProvider(this).get(ContactsViewModel::class.java)
+        val loadContactsUseCase = (requireActivity().application as ContactsApp).appComponent
+            .getLoadContactsUseCase()
+
+        viewModel = ViewModelProvider(this, object : ViewModelProvider.Factory {
+            override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+                @Suppress("UNCHECKED_CAST")
+                return ContactsViewModel(loadContactsUseCase) as T
+            }
+        }).get(ContactsViewModel::class.java)
     }
 
     override fun onCreateView(
