@@ -54,8 +54,14 @@ class ContactsFragment : Fragment() {
         val adapter = ContactsListAdapter()
         createContactsList(adapter)
 
+        binding.swipeRefreshLayoutContacts.setOnRefreshListener {
+            viewModel.refreshData()
+        }
+        binding.swipeRefreshLayoutContacts.setColorSchemeResources(R.color.color_accent)
+
         viewModel.contactsLiveData.observe(viewLifecycleOwner) {
             adapter.submitList(it)
+            binding.swipeRefreshLayoutContacts.isRefreshing = false
         }
     }
 

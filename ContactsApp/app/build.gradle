@@ -68,4 +68,7 @@ dependencies {
     implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
     implementation "com.squareup.okhttp3:okhttp:$okHttp_version"
     implementation "com.squareup.okhttp3:logging-interceptor:$okHttp_version"
+
+    //SwipeRefreshLayout
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
 }

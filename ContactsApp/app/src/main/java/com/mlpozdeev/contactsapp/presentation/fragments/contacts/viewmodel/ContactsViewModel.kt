@@ -22,7 +22,10 @@ class ContactsViewModel(
     val contactsLiveData: LiveData<List<ContactItem>> = mutableContactsLiveData
 
     init {
-        Log.d(TAG, "Load started")
+        refreshData()
+    }
+
+    fun refreshData() {
         load()
     }
 
