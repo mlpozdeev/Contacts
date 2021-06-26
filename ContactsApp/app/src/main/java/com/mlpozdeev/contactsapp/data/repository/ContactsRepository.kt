@@ -1,36 +1,30 @@
 package com.mlpozdeev.contactsapp.data.repository
 
+import com.mlpozdeev.contactsapp.data.network.api.ContactsApi
+import com.mlpozdeev.contactsapp.data.toContact
 import com.mlpozdeev.contactsapp.domain.model.Contact
-import com.mlpozdeev.contactsapp.domain.model.Period
-import com.mlpozdeev.contactsapp.domain.model.Temperament
-import java.util.*
+import io.reactivex.Single
 import javax.inject.Inject
 
-class ContactsRepository @Inject constructor() {
+class ContactsRepository @Inject constructor(
+    private val api: ContactsApi
+) {
     //test
-    fun getContacts(count: Int): List<Contact> {
-        return generateContacts(count)
-    }
+    fun getContacts(): Single<List<Contact>> {
+        return Single.concat(api.getContactsFrom1(), api.getContactsFrom2(), api.getContactsFrom3())
+            .map { contacts ->
+                contacts.map {
+                    it.toContact()
+                }
+            }
+            .toList()
+            .map { contactsLists ->
+                val contacts: MutableList<Contact> = mutableListOf()
+                contactsLists.forEach {
+                    contacts.addAll(it)
+                }
 
-    private fun generateContacts(count: Int): List<Contact> {
-        val contacts: MutableList<Contact> = mutableListOf()
-        for (i in 0..count) {
-            contacts.add(
-                Contact(
-                    id = i.toString(),
-                    name = "Name$i",
-                    phone = i.toString(),
-                    height = i.toFloat(),
-                    biography = "",
-                    temperament = Temperament.CHOLERIC,
-                    educationPeriod = Period(
-                        start = Date(),
-                        end = Date()
-                    )
-                )
-            )
-        }
-
-        return contacts
+                return@map contacts
+            }
     }
 }
