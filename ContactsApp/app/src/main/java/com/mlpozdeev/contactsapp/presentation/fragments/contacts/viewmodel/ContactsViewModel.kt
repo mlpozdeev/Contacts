@@ -4,34 +4,45 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.mlpozdeev.contactsapp.domain.usecase.LoadContactsUseCase
+import com.mlpozdeev.contactsapp.domain.usecase.GetContactsUseCase
+import com.mlpozdeev.contactsapp.domain.usecase.RefreshContactsUseCase
 import com.mlpozdeev.contactsapp.presentation.fragments.contacts.model.ContactItem
 import com.mlpozdeev.contactsapp.presentation.fragments.toContactItem
-import io.reactivex.disposables.Disposable
-import io.reactivex.schedulers.Schedulers
+import io.reactivex.disposables.CompositeDisposable
 
 class ContactsViewModel(
-    private val loadContactsUseCase: LoadContactsUseCase
+    private val refreshContactsUseCase: RefreshContactsUseCase,
+    private val getContactsUseCase: GetContactsUseCase
 ) : ViewModel() {
 
-    //test
-    private lateinit var disposable: Disposable
-
+    private val compositeDisposable: CompositeDisposable = CompositeDisposable()
     private val mutableContactsLiveData: MutableLiveData<List<ContactItem>> = MutableLiveData()
 
     val contactsLiveData: LiveData<List<ContactItem>> = mutableContactsLiveData
 
     init {
         refreshData()
+        loadData()
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        compositeDisposable.dispose()
     }
 
     fun refreshData() {
-        load()
+        val refreshDisposable = refreshContactsUseCase.refreshContacts()
+            .subscribe({
+                Log.d(TAG, "Refresh completed")
+            }, {
+                Log.e(TAG, it.message ?: "Error")
+            })
+
+        compositeDisposable.add(refreshDisposable)
     }
 
-    private fun load() {
-        disposable = loadContactsUseCase.getContacts()
-            .subscribeOn(Schedulers.io())
+    private fun loadData() {
+        val loadDisposable = getContactsUseCase.getAllContacts()
             .map { contacts ->
                 contacts.map {
                     it.toContactItem()
@@ -39,15 +50,11 @@ class ContactsViewModel(
             }
             .subscribe({
                 mutableContactsLiveData.postValue(it)
-                Log.d(TAG, "Load ended")
             }, {
                 Log.e(TAG, it.message ?: "Error")
             })
-    }
 
-    override fun onCleared() {
-        super.onCleared()
-        disposable.dispose()
+        compositeDisposable.add(loadDisposable)
     }
 
     companion object {

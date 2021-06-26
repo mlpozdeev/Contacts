@@ -1,8 +1,9 @@
 package com.mlpozdeev.contactsapp.presentation.fragments.contacts.view
 
 import android.os.Bundle
-import android.view.*
-import androidx.appcompat.app.AppCompatActivity
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -11,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.mlpozdeev.contactsapp.ContactsApp
 import com.mlpozdeev.contactsapp.R
 import com.mlpozdeev.contactsapp.databinding.FragmentContactsBinding
-import com.mlpozdeev.contactsapp.presentation.fragments.contacts.model.ContactItem
 import com.mlpozdeev.contactsapp.presentation.fragments.contacts.viewmodel.ContactsViewModel
 
 class ContactsFragment : Fragment() {
@@ -27,11 +27,16 @@ class ContactsFragment : Fragment() {
 
         val loadContactsUseCase = (requireActivity().application as ContactsApp).appComponent
             .getLoadContactsUseCase()
+        val getContactsUseCase = (requireActivity().application as ContactsApp).appComponent
+            .getGetContactsUseCase()
 
         viewModel = ViewModelProvider(this, object : ViewModelProvider.Factory {
             override fun <T : ViewModel?> create(modelClass: Class<T>): T {
                 @Suppress("UNCHECKED_CAST")
-                return ContactsViewModel(loadContactsUseCase) as T
+                return ContactsViewModel(
+                    loadContactsUseCase,
+                    getContactsUseCase
+                ) as T
             }
         }).get(ContactsViewModel::class.java)
     }
