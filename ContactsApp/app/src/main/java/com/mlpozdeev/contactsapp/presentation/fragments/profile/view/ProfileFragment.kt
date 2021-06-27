@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
@@ -77,7 +76,11 @@ class ProfileFragment : Fragment() {
         }
 
         binding.textViewProfilePhoneNumber.setOnClickListener {
-            openCall((it as TextView).text.toString())
+            viewModel.phoneNumberClicked()
+        }
+
+        viewModel.getClickedPhoneNumber().observe(viewLifecycleOwner) {
+            openCall(it)
         }
     }
 
