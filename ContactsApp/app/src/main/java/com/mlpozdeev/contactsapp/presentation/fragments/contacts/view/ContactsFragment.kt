@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
@@ -69,7 +70,6 @@ class ContactsFragment : Fragment() {
         viewModel.contactsLiveData.observe(viewLifecycleOwner) {
             adapter.submitList(it)
             binding.swipeRefreshLayoutContacts.isRefreshing = false
-            Log.d(TAG, "Data submitted to adapter")
         }
 
         viewModel.isLoadingLiveData.observe(viewLifecycleOwner) {
@@ -88,6 +88,17 @@ class ContactsFragment : Fragment() {
                 snackBar.dismiss()
             }
         }
+
+        binding.searchViewContacts.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                adapter.filter(newText ?: "")
+                return false
+            }
+        })
     }
 
     private fun createContactsList(adapter: ContactsListAdapter) {
