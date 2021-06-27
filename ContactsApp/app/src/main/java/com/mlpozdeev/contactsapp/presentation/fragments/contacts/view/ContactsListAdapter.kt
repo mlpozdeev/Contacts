@@ -39,19 +39,25 @@ class ContactsListAdapter(
 
     fun submitList(newItems: List<ContactItem>) {
         originalItems = newItems
-        submitList()
+        differ.submitList(newItems.filter { item ->
+            isItemInSearch(item)
+        })
     }
 
     private fun submitList() {
         originalItems?.let { items ->
             differ.submitList(items.filter { item ->
-                item.name.startsWith(currentSearchString, true)
-                        || item.phoneNumber
-                    .filter { it != ' ' && it != '(' && it != ')' && it != '+' }
-                    .startsWith(currentSearchString
-                        .filter { it != ' ' && it != '(' && it != ')' && it != '+' })
+                isItemInSearch(item)
             })
         }
+    }
+
+    private fun isItemInSearch(item: ContactItem): Boolean {
+        return item.name.startsWith(currentSearchString, true)
+                || item.phoneNumber
+            .filter { it != ' ' && it != '(' && it != ')' && it != '+' && it != '-' }
+            .startsWith(currentSearchString
+                .filter { it != ' ' && it != '(' && it != ')' && it != '+' && it != '-'  })
     }
 
     companion object {
