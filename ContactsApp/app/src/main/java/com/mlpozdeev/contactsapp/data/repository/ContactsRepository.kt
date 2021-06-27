@@ -41,7 +41,6 @@ class ContactsRepository @Inject constructor(
 
     fun getAllContacts(): Flowable<List<Contact>> {
         return db.contactsDao().getAllContacts()
-            .subscribeOn(Schedulers.io())
             .map { contacts ->
                 contacts.map {
                     it.toContact()
