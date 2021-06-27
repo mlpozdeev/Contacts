@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
 import com.mlpozdeev.contactsapp.ContactsApp
 import com.mlpozdeev.contactsapp.R
 import com.mlpozdeev.contactsapp.databinding.FragmentContactsBinding
@@ -63,6 +64,8 @@ class ContactsFragment : Fragment() {
         }
         binding.swipeRefreshLayoutContacts.setColorSchemeResources(R.color.color_accent)
 
+        val snackBar = Snackbar.make(requireView(), "", Snackbar.LENGTH_INDEFINITE)
+
         viewModel.contactsLiveData.observe(viewLifecycleOwner) {
             adapter.submitList(it)
             binding.swipeRefreshLayoutContacts.isRefreshing = false
@@ -72,6 +75,18 @@ class ContactsFragment : Fragment() {
         viewModel.isLoadingLiveData.observe(viewLifecycleOwner) {
             binding.progressBarContacts.isVisible = it
             binding.swipeRefreshLayoutContacts.isVisible = !it
+            if (!it) {
+                binding.swipeRefreshLayoutContacts.isRefreshing = false
+            }
+        }
+
+        viewModel.errorMessageLiveData.observe(viewLifecycleOwner) {
+            if (it != null) {
+                snackBar.setText(it)
+                snackBar.show()
+            } else {
+                snackBar.dismiss()
+            }
         }
     }
 
