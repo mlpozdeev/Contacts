@@ -6,7 +6,9 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.mlpozdeev.contactsapp.presentation.fragments.contacts.model.ContactItem
 
-class ContactsListAdapter : RecyclerView.Adapter<ContactViewHolder>() {
+class ContactsListAdapter(
+    private val onItemClick: (String) -> Unit
+) : RecyclerView.Adapter<ContactViewHolder>() {
 
     private val differ: AsyncListDiffer<ContactItem> = AsyncListDiffer(this, ITEM_COMPARATOR)
 
@@ -15,7 +17,11 @@ class ContactsListAdapter : RecyclerView.Adapter<ContactViewHolder>() {
     private var currentSearchString = ""
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactViewHolder {
-        return ContactViewHolder.create(parent)
+        return ContactViewHolder.create(parent) {
+            onItemClick(
+                differ.currentList[it].id
+            )
+        }
     }
 
     override fun onBindViewHolder(holder: ContactViewHolder, position: Int) {

@@ -4,11 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
@@ -56,7 +58,10 @@ class ContactsFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val adapter = ContactsListAdapter()
+        (requireActivity() as AppCompatActivity).setSupportActionBar(binding.toolbarContacts)
+        val adapter = ContactsListAdapter {
+            findNavController().navigate(R.id.action_contactsFragment_to_profileFragment)
+        }
         setContactsList(adapter)
         setSwipeRefreshLayout()
         setErrorHandling()

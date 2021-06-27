@@ -2,7 +2,7 @@
 <resources>
 
     <style name="ToolbarContacts" parent="Widget.AppCompat.Toolbar">
-        <item name="android:layout_height">80dp</item>
+        <item name="android:layout_height">72dp</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:background">@color/color_primary</item>
         <item name="contentInsetStart">0dp</item>
@@ -16,6 +16,13 @@
         <item name="queryHint">@string/search_view_query_hint</item>
         <item name="iconifiedByDefault">false</item>
         <item name="queryBackground">@android:color/transparent</item>
+    </style>
+
+    <style name="ToolbarProfile" parent="Widget.AppCompat.Toolbar">
+        <item name="android:layout_height">?android:attr/actionBarSize</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:background">@color/color_primary</item>
+        <item name="navigationIcon">@drawable/ic_arrow_back_white</item>
     </style>
 
 </resources>

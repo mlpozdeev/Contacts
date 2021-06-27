@@ -9,5 +9,17 @@
         android:id="@+id/contactsFragment"
         android:name="com.mlpozdeev.contactsapp.presentation.fragments.contacts.view.ContactsFragment"
         android:label="fragment_contacts"
-        tools:layout="@layout/fragment_contacts" />
+        tools:layout="@layout/fragment_contacts">
+
+        <action
+            android:id="@+id/action_contactsFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.mlpozdeev.contactsapp.presentation.fragments.profile.view.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
 </navigation>
