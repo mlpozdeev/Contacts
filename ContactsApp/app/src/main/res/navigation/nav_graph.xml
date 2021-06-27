@@ -13,7 +13,13 @@
 
         <action
             android:id="@+id/action_contactsFragment_to_profileFragment"
-            app:destination="@id/profileFragment" />
+            app:destination="@id/profileFragment">
+
+            <argument
+                android:name="contactId"
+                app:argType="string" />
+
+        </action>
 
     </fragment>
 
@@ -21,5 +27,11 @@
         android:id="@+id/profileFragment"
         android:name="com.mlpozdeev.contactsapp.presentation.fragments.profile.view.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile">
+
+        <argument
+            android:name="contactId"
+            app:argType="string" />
+
+    </fragment>
 </navigation>

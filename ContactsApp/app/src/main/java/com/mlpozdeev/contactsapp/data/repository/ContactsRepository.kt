@@ -28,6 +28,14 @@ class ContactsRepository @Inject constructor(
         }
     }
 
+    fun loadContact(contactId: String): Single<Contact> {
+        return db.contactsDao().getContactById(contactId)
+            .subscribeOn(Schedulers.io())
+            .map {
+                it.toContact()
+            }
+    }
+
     private fun loadContacts(): Single<List<Contact>> {
         return db.contactsDao().getLastLoadInfo()
             .subscribeOn(Schedulers.io())

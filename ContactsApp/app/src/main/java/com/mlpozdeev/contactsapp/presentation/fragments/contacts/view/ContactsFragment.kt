@@ -59,8 +59,9 @@ class ContactsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         (requireActivity() as AppCompatActivity).setSupportActionBar(binding.toolbarContacts)
-        val adapter = ContactsListAdapter {
-            findNavController().navigate(R.id.action_contactsFragment_to_profileFragment)
+        val adapter = ContactsListAdapter { id ->
+            val action = ContactsFragmentDirections.actionContactsFragmentToProfileFragment(id)
+            findNavController().navigate(action)
         }
         setContactsList(adapter)
         setSwipeRefreshLayout()

@@ -4,5 +4,11 @@ enum class Temperament {
     MELANCHOLIC,
     PHLEGMATIC,
     SANGUINE,
-    CHOLERIC
+    CHOLERIC;
+
+    override fun toString(): String {
+        return super.toString().lowercase().replaceFirstChar {
+            it.uppercaseChar()
+        }
+    }
 }

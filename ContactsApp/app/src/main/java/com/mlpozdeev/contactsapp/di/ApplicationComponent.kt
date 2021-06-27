@@ -3,6 +3,7 @@ package com.mlpozdeev.contactsapp.di
 import com.mlpozdeev.contactsapp.data.database.di.DatabaseModule
 import com.mlpozdeev.contactsapp.data.network.di.NetworkModule
 import com.mlpozdeev.contactsapp.domain.usecase.LoadContactsUseCase
+import com.mlpozdeev.contactsapp.domain.usecase.LoadContactUseCase
 import dagger.Component
 import javax.inject.Singleton
 
@@ -10,4 +11,6 @@ import javax.inject.Singleton
 @Component(modules = [NetworkModule::class, DatabaseModule::class, ContextModule::class])
 interface ApplicationComponent {
     fun getLoadContactsUseCase(): LoadContactsUseCase
+
+    fun getLoadContactUseCase(): LoadContactUseCase
 }

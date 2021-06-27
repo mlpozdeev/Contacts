@@ -13,6 +13,9 @@ abstract class ContactsDao(private val db: AppDatabase) {
     @Query("SELECT * FROM contact")
     abstract fun getAllContacts(): Single<List<ContactEntity>>
 
+    @Query("SELECT * FROM contact WHERE id=:contactId")
+    abstract fun getContactById(contactId: String): Single<ContactEntity>
+
     fun insertContacts(contacts: List<ContactEntity>, loadInfo: LoadInfoEntity): Completable {
         return Completable
             .fromAction { insertContactsTransaction(contacts, loadInfo) }

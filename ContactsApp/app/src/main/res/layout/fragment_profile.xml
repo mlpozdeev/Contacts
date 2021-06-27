@@ -3,10 +3,61 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".presentation.fragments.profile.view.ProfileFragment">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_profile"
         style="@style/ToolbarProfile" />
+
+    <TextView
+        android:id="@+id/text_view_profile_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_horizontal"
+        android:layout_marginTop="@dimen/margin_vertical"
+        android:textColor="@color/text_color_black"
+        android:textSize="20sp"
+        tools:text="Tania Delacruz" />
+
+    <TextView
+        android:id="@+id/text_view_profile_phone_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_horizontal"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/text_color_clickable"
+        android:textSize="14sp"
+        tools:text="+7 (919) 456-3914" />
+
+    <TextView
+        android:id="@+id/text_view_profile_temperament"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_horizontal"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/text_color_grey"
+        android:textSize="14sp"
+        tools:text="Choleric" />
+
+    <TextView
+        android:id="@+id/text_view_profile_education_period"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_horizontal"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/text_color_grey"
+        android:textSize="14sp"
+        tools:text="13.11.2001 - 29.07.2018" />
+
+    <TextView
+        android:id="@+id/text_view_profile_biography"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_horizontal"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/text_color_black"
+        android:textSize="14sp"
+        tools:text="Contact's biography" />
 
 </LinearLayout>
