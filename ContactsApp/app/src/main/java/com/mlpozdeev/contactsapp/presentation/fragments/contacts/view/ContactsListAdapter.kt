@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.mlpozdeev.contactsapp.presentation.fragments.contacts.model.ContactItem
+import okhttp3.internal.trimSubstring
 
 class ContactsListAdapter : RecyclerView.Adapter<ContactViewHolder>() {
 
@@ -38,8 +39,12 @@ class ContactsListAdapter : RecyclerView.Adapter<ContactViewHolder>() {
 
     private fun submitList() {
         originalItems?.let { items ->
-            differ.submitList(items.filter {
-                it.name.startsWith(currentSearchString, true)
+            differ.submitList(items.filter { item ->
+                item.name.startsWith(currentSearchString, true)
+                        || item.phoneNumber
+                    .filter { it != ' ' && it != '(' && it != ')' && it != '+' }
+                    .startsWith(currentSearchString
+                        .filter { it != ' ' && it != '(' && it != ')' && it != '+' })
             })
         }
     }
