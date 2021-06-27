@@ -1,7 +1,6 @@
 package com.mlpozdeev.contactsapp.presentation.fragments.contacts.view
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -58,29 +57,32 @@ class ContactsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val adapter = ContactsListAdapter()
-        createContactsList(adapter)
+        setContactsList(adapter)
+        setSwipeRefreshLayout()
+        setErrorHandling()
+        setLoadStateHandling()
+        setSearchHandling(adapter)
+    }
 
+    private fun setContactsList(adapter: ContactsListAdapter) {
+        binding.listContacts.adapter = adapter
+        val dividerItemDecoration = DividerItemDecoration(this.context, RecyclerView.VERTICAL)
+        binding.listContacts.addItemDecoration(dividerItemDecoration)
+
+        viewModel.contactsLiveData.observe(viewLifecycleOwner) {
+            adapter.submitList(it)
+        }
+    }
+
+    private fun setSwipeRefreshLayout() {
         binding.swipeRefreshLayoutContacts.setOnRefreshListener {
             viewModel.refreshData()
         }
         binding.swipeRefreshLayoutContacts.setColorSchemeResources(R.color.color_accent)
+    }
 
+    private fun setErrorHandling() {
         val snackBar = Snackbar.make(requireView(), "", Snackbar.LENGTH_INDEFINITE)
-
-        viewModel.contactsLiveData.observe(viewLifecycleOwner) {
-            adapter.submitList(it)
-            binding.swipeRefreshLayoutContacts.isRefreshing = false
-        }
-
-        viewModel.isLoadingLiveData.observe(viewLifecycleOwner) {
-            binding.progressBarContacts.isVisible = it
-            binding.swipeRefreshLayoutContacts.isVisible = !it
-        }
-
-        viewModel.isForceLoadingLiveData.observe(viewLifecycleOwner) {
-            binding.swipeRefreshLayoutContacts.isRefreshing = it
-        }
-
         viewModel.errorMessageLiveData.observe(viewLifecycleOwner) {
             if (it != null) {
                 snackBar.setText(it)
@@ -89,7 +91,20 @@ class ContactsFragment : Fragment() {
                 snackBar.dismiss()
             }
         }
+    }
 
+    private fun setLoadStateHandling() {
+        viewModel.isLoadingLiveData.observe(viewLifecycleOwner) {
+            binding.progressBarContacts.isVisible = it
+            binding.swipeRefreshLayoutContacts.isVisible = !it
+        }
+
+        viewModel.isForceLoadingLiveData.observe(viewLifecycleOwner) {
+            binding.swipeRefreshLayoutContacts.isRefreshing = it
+        }
+    }
+
+    private fun setSearchHandling(adapter: ContactsListAdapter) {
         binding.searchViewContacts.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return false
@@ -100,12 +115,6 @@ class ContactsFragment : Fragment() {
                 return false
             }
         })
-    }
-
-    private fun createContactsList(adapter: ContactsListAdapter) {
-        binding.listContacts.adapter = adapter
-        val dividerItemDecoration = DividerItemDecoration(this.context, RecyclerView.VERTICAL)
-        binding.listContacts.addItemDecoration(dividerItemDecoration)
     }
 
     companion object {
