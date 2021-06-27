@@ -17,10 +17,12 @@ class ContactsViewModel(
     private val compositeDisposable: CompositeDisposable = CompositeDisposable()
     private val mutableContactsLiveData: MutableLiveData<List<ContactItem>> = MutableLiveData()
     private val mutableIsLoadingLiveData: MutableLiveData<Boolean> = MutableLiveData()
+    private val mutableIsForceLoadingLiveData: MutableLiveData<Boolean> = MutableLiveData()
     private val mutableErrorMessageLiveData: MutableLiveData<String?> = MutableLiveData()
 
     val contactsLiveData: LiveData<List<ContactItem>> = mutableContactsLiveData
     val isLoadingLiveData: LiveData<Boolean> = mutableIsLoadingLiveData
+    val isForceLoadingLiveData: LiveData<Boolean> = mutableIsForceLoadingLiveData
     val errorMessageLiveData: LiveData<String?> = mutableErrorMessageLiveData
 
     init {
@@ -41,12 +43,16 @@ class ContactsViewModel(
                     it.toContactItem()
                 }
             }
+            .doOnSubscribe {
+                mutableIsForceLoadingLiveData.postValue(true)
+            }
             .subscribe({
                 mutableContactsLiveData.postValue(it)
                 mutableErrorMessageLiveData.postValue(null)
+                mutableIsForceLoadingLiveData.postValue(false)
             }, {
                 mutableErrorMessageLiveData.postValue(it.localizedMessage)
-                mutableIsLoadingLiveData.postValue(false)
+                mutableIsForceLoadingLiveData.postValue(false)
             })
 
         compositeDisposable.add(refreshDisposable)
@@ -65,8 +71,8 @@ class ContactsViewModel(
             }
             .subscribe({
                 mutableContactsLiveData.postValue(it)
-                mutableIsLoadingLiveData.postValue(false)
                 mutableErrorMessageLiveData.postValue(null)
+                mutableIsLoadingLiveData.postValue(false)
             }, {
                 mutableErrorMessageLiveData.postValue(it.localizedMessage)
                 mutableIsLoadingLiveData.postValue(false)

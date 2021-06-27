@@ -75,9 +75,10 @@ class ContactsFragment : Fragment() {
         viewModel.isLoadingLiveData.observe(viewLifecycleOwner) {
             binding.progressBarContacts.isVisible = it
             binding.swipeRefreshLayoutContacts.isVisible = !it
-            if (!it) {
-                binding.swipeRefreshLayoutContacts.isRefreshing = false
-            }
+        }
+
+        viewModel.isForceLoadingLiveData.observe(viewLifecycleOwner) {
+            binding.swipeRefreshLayoutContacts.isRefreshing = it
         }
 
         viewModel.errorMessageLiveData.observe(viewLifecycleOwner) {
