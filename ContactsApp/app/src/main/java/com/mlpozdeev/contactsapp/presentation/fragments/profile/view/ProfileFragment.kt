@@ -58,6 +58,12 @@ class ProfileFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        setupToolbar()
+        setProfileHandling()
+        setPhoneNumberClickHandling()
+    }
+
+    private fun setupToolbar() {
         val appCompatActivity = (requireActivity() as AppCompatActivity)
         appCompatActivity.setSupportActionBar(binding.toolbarProfile)
         appCompatActivity.supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -66,7 +72,9 @@ class ProfileFragment : Fragment() {
         binding.toolbarProfile.setNavigationOnClickListener {
             findNavController().navigateUp()
         }
+    }
 
+    private fun setProfileHandling() {
         viewModel.profileLiveData.observe(viewLifecycleOwner) {
             binding.textViewProfileName.text = it.name
             binding.textViewProfilePhoneNumber.text = it.phoneNumber
@@ -74,7 +82,9 @@ class ProfileFragment : Fragment() {
             binding.textViewProfileEducationPeriod.text = it.educationPeriod
             binding.textViewProfileBiography.text = it.biography
         }
+    }
 
+    private fun setPhoneNumberClickHandling() {
         binding.textViewProfilePhoneNumber.setOnClickListener {
             viewModel.phoneNumberClicked()
         }
