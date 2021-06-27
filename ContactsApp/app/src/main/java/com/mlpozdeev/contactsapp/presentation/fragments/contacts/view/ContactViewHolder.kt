@@ -15,7 +15,7 @@ class ContactViewHolder(
 
     private val nameTextView: TextView = view.findViewById(R.id.text_view_contact_name)
     private val heightTextView: TextView = view.findViewById(R.id.text_view_contact_height)
-    private val phoneNumberTextView: TextView = view.findViewById(R.id.text_view_phone_number)
+    private val phoneNumberTextView: TextView = view.findViewById(R.id.text_view_contact_phone_number)
 
     init {
         itemView.setOnClickListener {
