@@ -28,17 +28,15 @@ class ContactsListAdapter : RecyclerView.Adapter<ContactViewHolder>() {
 
     fun filter(searchString: String) {
         currentSearchString = searchString
-        submitSearch()
+        submitList()
     }
 
     fun submitList(newItems: List<ContactItem>) {
         originalItems = newItems
-        differ.submitList(newItems.filter {
-            it.name.startsWith(currentSearchString, true)
-        })
+        submitList()
     }
 
-    private fun submitSearch() {
+    private fun submitList() {
         originalItems?.let { items ->
             differ.submitList(items.filter {
                 it.name.startsWith(currentSearchString, true)
