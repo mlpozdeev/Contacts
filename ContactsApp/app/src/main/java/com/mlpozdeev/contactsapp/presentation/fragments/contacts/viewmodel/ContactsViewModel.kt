@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.mlpozdeev.contactsapp.domain.usecase.LoadContactsUseCase
+import com.mlpozdeev.contactsapp.presentation.SingleLiveEvent
 import com.mlpozdeev.contactsapp.presentation.fragments.contacts.model.ContactItem
 import com.mlpozdeev.contactsapp.presentation.fragments.toContactItem
 import io.reactivex.disposables.CompositeDisposable
@@ -19,6 +20,7 @@ class ContactsViewModel(
     private val mutableIsLoadingLiveData: MutableLiveData<Boolean> = MutableLiveData()
     private val mutableIsForceLoadingLiveData: MutableLiveData<Boolean> = MutableLiveData()
     private val mutableErrorMessageLiveData: MutableLiveData<String?> = MutableLiveData()
+    private val clickedItemId: SingleLiveEvent<String> = SingleLiveEvent()
 
     val contactsLiveData: LiveData<List<ContactItem>> = mutableContactsLiveData
     val isLoadingLiveData: LiveData<Boolean> = mutableIsLoadingLiveData
@@ -33,6 +35,14 @@ class ContactsViewModel(
         super.onCleared()
         compositeDisposable.dispose()
         Log.d(TAG, "ContactsViewModel cleared")
+    }
+
+    fun itemClicked(id: String) {
+        clickedItemId.value = id
+    }
+
+    fun getClickedItemId(): SingleLiveEvent<String> {
+        return clickedItemId
     }
 
     fun refreshData() {

@@ -59,15 +59,15 @@ class ContactsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         (requireActivity() as AppCompatActivity).setSupportActionBar(binding.toolbarContacts)
-        val adapter = ContactsListAdapter { id ->
-            val action = ContactsFragmentDirections.actionContactsFragmentToProfileFragment(id)
-            findNavController().navigate(action)
+        val adapter = ContactsListAdapter {
+            viewModel.itemClicked(it)
         }
         setContactsList(adapter)
         setSwipeRefreshLayout()
         setErrorHandling()
         setLoadStateHandling()
         setSearchHandling(adapter)
+        setClickHandling()
     }
 
     private fun setContactsList(adapter: ContactsListAdapter) {
@@ -121,6 +121,13 @@ class ContactsFragment : Fragment() {
                 return false
             }
         })
+    }
+
+    private fun setClickHandling() {
+        viewModel.getClickedItemId().observe(viewLifecycleOwner) {
+            val action = ContactsFragmentDirections.actionContactsFragmentToProfileFragment(it)
+            findNavController().navigate(action)
+        }
     }
 
     companion object {
