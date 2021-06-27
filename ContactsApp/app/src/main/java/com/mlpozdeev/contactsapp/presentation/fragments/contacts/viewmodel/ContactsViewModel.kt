@@ -16,8 +16,10 @@ class ContactsViewModel(
 
     private val compositeDisposable: CompositeDisposable = CompositeDisposable()
     private val mutableContactsLiveData: MutableLiveData<List<ContactItem>> = MutableLiveData()
+    private val mutableIsLoadingLiveData: MutableLiveData<Boolean> = MutableLiveData()
 
     val contactsLiveData: LiveData<List<ContactItem>> = mutableContactsLiveData
+    val isLoadingLiveData: LiveData<Boolean> = mutableIsLoadingLiveData
 
     init {
         initialLoadData()
@@ -54,8 +56,12 @@ class ContactsViewModel(
                     it.toContactItem()
                 }
             }
+            .doOnSubscribe {
+                mutableIsLoadingLiveData.postValue(true)
+            }
             .subscribe({
                 mutableContactsLiveData.postValue(it)
+                mutableIsLoadingLiveData.postValue(false)
             }, {
                 Log.e(TAG, it.message ?: "Error")
             })
