@@ -5,7 +5,6 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.mlpozdeev.contactsapp.presentation.fragments.contacts.model.ContactItem
-import okhttp3.internal.trimSubstring
 
 class ContactsListAdapter : RecyclerView.Adapter<ContactViewHolder>() {
 
