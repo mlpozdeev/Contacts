@@ -1,6 +1,7 @@
 package com.mlpozdeev.contactsapp.presentation.fragments.contacts.view
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,17 +26,14 @@ class ContactsFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val refreshContactsUseCase = (requireActivity().application as ContactsApp).appComponent
-            .getRefreshContactsUseCase()
-        val getContactsUseCase = (requireActivity().application as ContactsApp).appComponent
-            .getGetContactsUseCase()
+        val loadContactsUseCase = (requireActivity().application as ContactsApp).appComponent
+            .getLoadContactsUseCase()
 
         viewModel = ViewModelProvider(this, object : ViewModelProvider.Factory {
             override fun <T : ViewModel?> create(modelClass: Class<T>): T {
                 @Suppress("UNCHECKED_CAST")
                 return ContactsViewModel(
-                    refreshContactsUseCase,
-                    getContactsUseCase
+                    loadContactsUseCase
                 ) as T
             }
         }).get(ContactsViewModel::class.java)
@@ -67,6 +65,7 @@ class ContactsFragment : Fragment() {
         viewModel.contactsLiveData.observe(viewLifecycleOwner) {
             adapter.submitList(it)
             binding.swipeRefreshLayoutContacts.isRefreshing = false
+            Log.d(TAG, "Data submitted to adapter")
         }
     }
 
@@ -74,5 +73,9 @@ class ContactsFragment : Fragment() {
         binding.listContacts.adapter = adapter
         val dividerItemDecoration = DividerItemDecoration(this.context, RecyclerView.VERTICAL)
         binding.listContacts.addItemDecoration(dividerItemDecoration)
+    }
+
+    companion object {
+        private const val TAG = "ContactsFragment"
     }
 }

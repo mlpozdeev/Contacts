@@ -4,15 +4,14 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.mlpozdeev.contactsapp.domain.usecase.GetContactsUseCase
-import com.mlpozdeev.contactsapp.domain.usecase.RefreshContactsUseCase
+import com.mlpozdeev.contactsapp.domain.usecase.LoadContactsUseCase
 import com.mlpozdeev.contactsapp.presentation.fragments.contacts.model.ContactItem
 import com.mlpozdeev.contactsapp.presentation.fragments.toContactItem
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.schedulers.Schedulers
 
 class ContactsViewModel(
-    private val refreshContactsUseCase: RefreshContactsUseCase,
-    private val getContactsUseCase: GetContactsUseCase
+    private val loadContactsUseCase: LoadContactsUseCase
 ) : ViewModel() {
 
     private val compositeDisposable: CompositeDisposable = CompositeDisposable()
@@ -21,19 +20,25 @@ class ContactsViewModel(
     val contactsLiveData: LiveData<List<ContactItem>> = mutableContactsLiveData
 
     init {
-        refreshData()
-        loadData()
+        initialLoadData()
     }
 
     override fun onCleared() {
         super.onCleared()
         compositeDisposable.dispose()
+        Log.d(TAG, "ContactsViewModel cleared")
     }
 
     fun refreshData() {
-        val refreshDisposable = refreshContactsUseCase.refreshContacts()
+        val refreshDisposable = loadContactsUseCase.loadContacts(isFromCache = false)
+            .observeOn(Schedulers.computation())
+            .map { contacts ->
+                contacts.map {
+                    it.toContactItem()
+                }
+            }
             .subscribe({
-                Log.d(TAG, "Refresh completed")
+                mutableContactsLiveData.postValue(it)
             }, {
                 Log.e(TAG, it.message ?: "Error")
             })
@@ -41,8 +46,9 @@ class ContactsViewModel(
         compositeDisposable.add(refreshDisposable)
     }
 
-    private fun loadData() {
-        val loadDisposable = getContactsUseCase.getAllContacts()
+    private fun initialLoadData() {
+        val loadDisposable = loadContactsUseCase.loadContacts(isFromCache = true)
+            .observeOn(Schedulers.computation())
             .map { contacts ->
                 contacts.map {
                     it.toContactItem()
