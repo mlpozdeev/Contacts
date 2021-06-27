@@ -25,8 +25,8 @@ class ContactsFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val loadContactsUseCase = (requireActivity().application as ContactsApp).appComponent
-            .getLoadContactsUseCase()
+        val refreshContactsUseCase = (requireActivity().application as ContactsApp).appComponent
+            .getRefreshContactsUseCase()
         val getContactsUseCase = (requireActivity().application as ContactsApp).appComponent
             .getGetContactsUseCase()
 
@@ -34,7 +34,7 @@ class ContactsFragment : Fragment() {
             override fun <T : ViewModel?> create(modelClass: Class<T>): T {
                 @Suppress("UNCHECKED_CAST")
                 return ContactsViewModel(
-                    loadContactsUseCase,
+                    refreshContactsUseCase,
                     getContactsUseCase
                 ) as T
             }

@@ -10,6 +10,6 @@ import javax.inject.Singleton
 @Singleton
 @Component(modules = [NetworkModule::class, DatabaseModule::class, ContextModule::class])
 interface ApplicationComponent {
-    fun getLoadContactsUseCase(): RefreshContactsUseCase
+    fun getRefreshContactsUseCase(): RefreshContactsUseCase
     fun getGetContactsUseCase(): GetContactsUseCase
 }
