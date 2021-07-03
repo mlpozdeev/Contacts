@@ -12,28 +12,17 @@ import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 import java.util.*
 import javax.inject.Inject
-import javax.inject.Singleton
 
-@Singleton
 class ContactsRepository @Inject constructor(
     private val api: ContactsApi,
     private val db: AppDatabase
 ) {
-
     fun loadContacts(isFromCache: Boolean): Single<List<Contact>> {
         return if (isFromCache) {
             loadContacts()
         } else {
             loadContactsFromServer()
         }
-    }
-
-    fun loadContact(contactId: String): Single<Contact> {
-        return db.contactsDao().getContactById(contactId)
-            .subscribeOn(Schedulers.io())
-            .map {
-                it.toContact()
-            }
     }
 
     private fun loadContacts(): Single<List<Contact>> {
