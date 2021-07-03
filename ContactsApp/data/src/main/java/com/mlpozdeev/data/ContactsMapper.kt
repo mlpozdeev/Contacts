@@ -1,4 +1,4 @@
-package com.mlpozdeev.contactsapp.data
+package com.mlpozdeev.data
 
 import com.mlpozdeev.database.entity.ContactEntity
 import com.mlpozdeev.network.dto.ContactDTO

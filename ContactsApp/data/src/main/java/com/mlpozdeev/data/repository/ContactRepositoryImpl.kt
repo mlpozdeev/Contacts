@@ -1,6 +1,6 @@
-package com.mlpozdeev.contactsapp.data.repository
+package com.mlpozdeev.data.repository
 
-import com.mlpozdeev.contactsapp.data.toContact
+import com.mlpozdeev.data.toContact
 import com.mlpozdeev.database.AppDatabase
 import com.mlpozdeev.domain.model.Contact
 import com.mlpozdeev.domain.repository.ContactRepository
