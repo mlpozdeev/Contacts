@@ -8,16 +8,18 @@ import com.mlpozdeev.contactsapp.data.network.api.ContactsApi
 import com.mlpozdeev.contactsapp.data.toContact
 import com.mlpozdeev.contactsapp.data.toContactEntity
 import com.mlpozdeev.contactsapp.domain.model.Contact
+import com.mlpozdeev.contactsapp.domain.repository.ContactsRepository
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 import java.util.*
 import javax.inject.Inject
 
-class ContactsRepository @Inject constructor(
+class ContactsRepositoryImpl @Inject constructor(
     private val api: ContactsApi,
     private val db: AppDatabase
-) {
-    fun loadContacts(isFromCache: Boolean): Single<List<Contact>> {
+) : ContactsRepository {
+
+    override fun loadContacts(isFromCache: Boolean): Single<List<Contact>> {
         return if (isFromCache) {
             loadContacts()
         } else {
