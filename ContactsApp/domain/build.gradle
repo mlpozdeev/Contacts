@@ -33,9 +33,8 @@ android {
 
 dependencies {
     //RxJava
-    implementation "io.reactivex.rxjava2:rxjava:2.2.21"
+    implementation deps("io.reactivex.rxjava2:rxjava")
 
     //Dagger
-    def dagger_version = "2.37"
-    implementation "com.google.dagger:dagger:$dagger_version"
+    implementation deps("com.google.dagger:dagger")
 }

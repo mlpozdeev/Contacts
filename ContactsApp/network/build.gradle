@@ -35,16 +35,13 @@ android {
 
 dependencies {
     //Internet
-    def retrofit_version = "2.9.0"
-    def okHttp_version = "4.9.0"
-    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
-    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
-    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
-    implementation "com.squareup.okhttp3:okhttp:$okHttp_version"
-    implementation "com.squareup.okhttp3:logging-interceptor:$okHttp_version"
+    implementation deps("com.squareup.retrofit2:retrofit")
+    implementation deps("com.squareup.retrofit2:converter-gson")
+    implementation deps("com.squareup.retrofit2:adapter-rxjava2")
+    implementation deps("com.squareup.okhttp3:okhttp")
+    implementation deps("com.squareup.okhttp3:logging-interceptor")
 
     //Dagger
-    def dagger_version = "2.37"
-    implementation "com.google.dagger:dagger:$dagger_version"
-    kapt "com.google.dagger:dagger-compiler:$dagger_version"
+    implementation deps("com.google.dagger:dagger")
+    kapt deps("com.google.dagger:dagger-compiler")
 }
