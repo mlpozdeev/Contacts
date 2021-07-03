@@ -3,8 +3,7 @@ package com.mlpozdeev.contactsapp.data.database.entity
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.mlpozdeev.contactsapp.domain.model.Period
-import com.mlpozdeev.contactsapp.domain.model.Temperament
+import com.mlpozdeev.domain.model.Temperament
 import java.util.*
 
 @Entity(tableName = "contact")

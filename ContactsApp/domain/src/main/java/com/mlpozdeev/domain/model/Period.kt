@@ -1,4 +1,4 @@
-package com.mlpozdeev.contactsapp.domain.model
+package com.mlpozdeev.domain.model
 
 import java.util.*
 

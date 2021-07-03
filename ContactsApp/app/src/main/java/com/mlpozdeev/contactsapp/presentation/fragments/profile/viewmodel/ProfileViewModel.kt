@@ -3,7 +3,7 @@ package com.mlpozdeev.contactsapp.presentation.fragments.profile.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.mlpozdeev.contactsapp.domain.usecase.LoadContactUseCase
+import com.mlpozdeev.domain.usecase.LoadContactUseCase
 import com.mlpozdeev.contactsapp.presentation.SingleLiveEvent
 import com.mlpozdeev.contactsapp.presentation.fragments.profile.model.Profile
 import com.mlpozdeev.contactsapp.presentation.fragments.toProfile

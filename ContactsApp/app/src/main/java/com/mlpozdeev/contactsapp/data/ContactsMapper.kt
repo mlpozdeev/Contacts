@@ -4,9 +4,9 @@ import com.mlpozdeev.contactsapp.data.database.entity.ContactEntity
 import com.mlpozdeev.contactsapp.data.network.dto.ContactDTO
 import com.mlpozdeev.contactsapp.data.network.dto.PeriodDTO
 import com.mlpozdeev.contactsapp.data.network.dto.TemperamentDTO
-import com.mlpozdeev.contactsapp.domain.model.Contact
-import com.mlpozdeev.contactsapp.domain.model.Period
-import com.mlpozdeev.contactsapp.domain.model.Temperament
+import com.mlpozdeev.domain.model.Contact
+import com.mlpozdeev.domain.model.Period
+import com.mlpozdeev.domain.model.Temperament
 
 fun Contact.toContactEntity(): ContactEntity = ContactEntity(
     id = id,

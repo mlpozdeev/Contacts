@@ -2,8 +2,8 @@ package com.mlpozdeev.contactsapp.data.repository
 
 import com.mlpozdeev.contactsapp.data.database.AppDatabase
 import com.mlpozdeev.contactsapp.data.toContact
-import com.mlpozdeev.contactsapp.domain.model.Contact
-import com.mlpozdeev.contactsapp.domain.repository.ContactRepository
+import com.mlpozdeev.domain.model.Contact
+import com.mlpozdeev.domain.repository.ContactRepository
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject

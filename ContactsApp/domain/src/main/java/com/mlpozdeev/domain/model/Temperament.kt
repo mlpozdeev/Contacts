@@ -1,4 +1,4 @@
-package com.mlpozdeev.contactsapp.domain.model
+package com.mlpozdeev.domain.model
 
 enum class Temperament {
     MELANCHOLIC,

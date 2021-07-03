@@ -2,8 +2,8 @@ package com.mlpozdeev.contactsapp.di
 
 import com.mlpozdeev.contactsapp.data.repository.ContactRepositoryImpl
 import com.mlpozdeev.contactsapp.data.repository.ContactsRepositoryImpl
-import com.mlpozdeev.contactsapp.domain.repository.ContactRepository
-import com.mlpozdeev.contactsapp.domain.repository.ContactsRepository
+import com.mlpozdeev.domain.repository.ContactRepository
+import com.mlpozdeev.domain.repository.ContactsRepository
 import dagger.Binds
 import dagger.Module
 

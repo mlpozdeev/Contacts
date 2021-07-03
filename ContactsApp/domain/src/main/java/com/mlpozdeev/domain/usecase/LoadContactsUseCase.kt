@@ -1,7 +1,7 @@
-package com.mlpozdeev.contactsapp.domain.usecase
+package com.mlpozdeev.domain.usecase
 
-import com.mlpozdeev.contactsapp.domain.model.Contact
-import com.mlpozdeev.contactsapp.domain.repository.ContactsRepository
+import com.mlpozdeev.domain.model.Contact
+import com.mlpozdeev.domain.repository.ContactsRepository
 import io.reactivex.Single
 import javax.inject.Inject
 

@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.mlpozdeev.contactsapp.domain.usecase.LoadContactsUseCase
+import com.mlpozdeev.domain.usecase.LoadContactsUseCase
 import com.mlpozdeev.contactsapp.presentation.SingleLiveEvent
 import com.mlpozdeev.contactsapp.presentation.fragments.contacts.model.ContactItem
 import com.mlpozdeev.contactsapp.presentation.fragments.toContactItem

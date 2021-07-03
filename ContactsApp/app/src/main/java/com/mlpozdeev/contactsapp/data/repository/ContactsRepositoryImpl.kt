@@ -7,8 +7,8 @@ import com.mlpozdeev.contactsapp.data.database.entity.LoadInfoEntity
 import com.mlpozdeev.contactsapp.data.network.api.ContactsApi
 import com.mlpozdeev.contactsapp.data.toContact
 import com.mlpozdeev.contactsapp.data.toContactEntity
-import com.mlpozdeev.contactsapp.domain.model.Contact
-import com.mlpozdeev.contactsapp.domain.repository.ContactsRepository
+import com.mlpozdeev.domain.model.Contact
+import com.mlpozdeev.domain.repository.ContactsRepository
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 import java.util.*

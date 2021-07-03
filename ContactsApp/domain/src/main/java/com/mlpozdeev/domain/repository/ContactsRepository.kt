@@ -1,6 +1,6 @@
-package com.mlpozdeev.contactsapp.domain.repository
+package com.mlpozdeev.domain.repository
 
-import com.mlpozdeev.contactsapp.domain.model.Contact
+import com.mlpozdeev.domain.model.Contact
 import io.reactivex.Single
 
 interface ContactsRepository {
