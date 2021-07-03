@@ -1,6 +1,6 @@
-package com.mlpozdeev.contactsapp.data.network.api
+package com.mlpozdeev.network.api
 
-import com.mlpozdeev.contactsapp.data.network.dto.ContactDTO
+import com.mlpozdeev.network.dto.ContactDTO
 import io.reactivex.Single
 import retrofit2.http.GET
 

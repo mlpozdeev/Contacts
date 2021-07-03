@@ -1,7 +1,7 @@
 package com.mlpozdeev.contactsapp.di
 
 import com.mlpozdeev.database.di.DatabaseModule
-import com.mlpozdeev.contactsapp.data.network.di.NetworkModule
+import com.mlpozdeev.network.di.NetworkModule
 import com.mlpozdeev.domain.usecase.LoadContactsUseCase
 import com.mlpozdeev.domain.usecase.LoadContactUseCase
 import dagger.Component

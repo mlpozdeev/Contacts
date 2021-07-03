@@ -1,7 +1,6 @@
-package com.mlpozdeev.contactsapp.data.network.di
+package com.mlpozdeev.network.di
 
-import com.google.gson.GsonBuilder
-import com.mlpozdeev.contactsapp.data.network.api.ContactsApi
+import com.mlpozdeev.network.api.ContactsApi
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient

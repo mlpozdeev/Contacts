@@ -1,4 +1,4 @@
-package com.mlpozdeev.contactsapp.data.network.dto
+package com.mlpozdeev.network.dto
 
 import java.util.*
 

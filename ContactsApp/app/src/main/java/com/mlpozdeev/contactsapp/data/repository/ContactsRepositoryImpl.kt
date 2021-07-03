@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.room.EmptyResultSetException
 import com.mlpozdeev.database.AppDatabase
 import com.mlpozdeev.database.entity.LoadInfoEntity
-import com.mlpozdeev.contactsapp.data.network.api.ContactsApi
+import com.mlpozdeev.network.api.ContactsApi
 import com.mlpozdeev.contactsapp.data.toContact
 import com.mlpozdeev.contactsapp.data.toContactEntity
 import com.mlpozdeev.domain.model.Contact
