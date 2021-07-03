@@ -1,6 +1,6 @@
 package com.mlpozdeev.contactsapp.di
 
-import com.mlpozdeev.contactsapp.data.database.di.DatabaseModule
+import com.mlpozdeev.database.di.DatabaseModule
 import com.mlpozdeev.contactsapp.data.network.di.NetworkModule
 import com.mlpozdeev.domain.usecase.LoadContactsUseCase
 import com.mlpozdeev.domain.usecase.LoadContactUseCase

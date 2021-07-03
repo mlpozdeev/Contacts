@@ -1,11 +1,11 @@
-package com.mlpozdeev.contactsapp.data.database
+package com.mlpozdeev.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.mlpozdeev.contactsapp.data.database.dao.ContactsDao
-import com.mlpozdeev.contactsapp.data.database.entity.ContactEntity
-import com.mlpozdeev.contactsapp.data.database.entity.LoadInfoEntity
+import com.mlpozdeev.database.dao.ContactsDao
+import com.mlpozdeev.database.entity.ContactEntity
+import com.mlpozdeev.database.entity.LoadInfoEntity
 
 @Database(entities = [ContactEntity::class, LoadInfoEntity::class], version = 1, exportSchema = false)
 @TypeConverters(Converters::class)

@@ -1,7 +1,7 @@
 package com.mlpozdeev.contactsapp.data.repository
 
-import com.mlpozdeev.contactsapp.data.database.AppDatabase
 import com.mlpozdeev.contactsapp.data.toContact
+import com.mlpozdeev.database.AppDatabase
 import com.mlpozdeev.domain.model.Contact
 import com.mlpozdeev.domain.repository.ContactRepository
 import io.reactivex.Single

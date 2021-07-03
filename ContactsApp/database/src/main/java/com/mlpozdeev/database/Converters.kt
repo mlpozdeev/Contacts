@@ -1,4 +1,4 @@
-package com.mlpozdeev.contactsapp.data.database
+package com.mlpozdeev.database
 
 import androidx.room.TypeConverter
 import java.util.*

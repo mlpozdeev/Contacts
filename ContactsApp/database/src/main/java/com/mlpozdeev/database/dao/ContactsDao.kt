@@ -1,9 +1,9 @@
-package com.mlpozdeev.contactsapp.data.database.dao
+package com.mlpozdeev.database.dao
 
 import androidx.room.*
-import com.mlpozdeev.contactsapp.data.database.AppDatabase
-import com.mlpozdeev.contactsapp.data.database.entity.ContactEntity
-import com.mlpozdeev.contactsapp.data.database.entity.LoadInfoEntity
+import com.mlpozdeev.database.AppDatabase
+import com.mlpozdeev.database.entity.ContactEntity
+import com.mlpozdeev.database.entity.LoadInfoEntity
 import io.reactivex.Completable
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers

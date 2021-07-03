@@ -1,4 +1,4 @@
-package com.mlpozdeev.contactsapp.data.database.entity
+package com.mlpozdeev.database.entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

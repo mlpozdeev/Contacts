@@ -1,8 +1,8 @@
-package com.mlpozdeev.contactsapp.data.database.di
+package com.mlpozdeev.database.di
 
 import android.content.Context
 import androidx.room.Room
-import com.mlpozdeev.contactsapp.data.database.AppDatabase
+import com.mlpozdeev.database.AppDatabase
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton

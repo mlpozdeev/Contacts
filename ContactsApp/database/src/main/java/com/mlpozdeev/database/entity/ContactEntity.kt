@@ -1,9 +1,8 @@
-package com.mlpozdeev.contactsapp.data.database.entity
+package com.mlpozdeev.database.entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.mlpozdeev.domain.model.Temperament
 import java.util.*
 
 @Entity(tableName = "contact")
@@ -20,7 +19,7 @@ data class ContactEntity(
     @ColumnInfo(name = "biography")
     val biography: String,
     @ColumnInfo(name = "temperament")
-    val temperament: Temperament,
+    val temperament: TemperamentEntity,
     @ColumnInfo(name = "start_education_date")
     val startEducationDate: Date,
     @ColumnInfo(name = "end_education_date")
