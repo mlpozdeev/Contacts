@@ -7,12 +7,72 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath "com.android.tools.build:gradle:4.2.1"
+        classpath 'com.android.tools.build:gradle:4.2.2'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version"
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
+    }
+}
+
+ext {
+    //Android
+    core_version = "1.6.0"
+    appcompat_version = "1.3.0"
+    material_version = "1.4.0"
+    constraintlayout_version = "2.0.4"
+    swiperefreshlayout_version = "1.1.0"
+
+    //DI
+    dagger_version = "2.37"
+
+    //RxJava
+    rxjava_version = "2.2.21"
+
+    //Internet
+    retrofit_version = "2.9.0"
+    okHttp_version = "4.9.0"
+
+    //Room
+    room_version = "2.3.0"
+
+    depsWithVersion = [
+            //Android
+            "androidx.core:core-ktx"                        : core_version,
+            "androidx.appcompat:appcompat"                  : appcompat_version,
+            "com.google.android.material:material"          : material_version,
+            "androidx.constraintlayout:constraintlayout"    : constraintlayout_version,
+            "androidx.swiperefreshlayout:swiperefreshlayout": swiperefreshlayout_version,
+
+            //Navigation
+            "androidx.navigation:navigation-fragment-ktx"   : nav_version,
+            "androidx.navigation:navigation-ui-ktx"         : nav_version,
+
+            //DI
+            "com.google.dagger:dagger"                      : dagger_version,
+            "com.google.dagger:dagger-compiler"             : dagger_version,
+
+            //RxJava
+            "io.reactivex.rxjava2:rxjava"                   : rxjava_version,
+
+            //Internet
+            "com.squareup.retrofit2:retrofit"               : retrofit_version,
+            "com.squareup.retrofit2:converter-gson"         : retrofit_version,
+            "com.squareup.retrofit2:adapter-rxjava2"        : retrofit_version,
+            "com.squareup.okhttp3:okhttp"                   : okHttp_version,
+            "com.squareup.okhttp3:logging-interceptor"      : okHttp_version,
+
+            //Room
+            "androidx.room:room-runtime"                    : room_version,
+            "androidx.room:room-rxjava2"                    : room_version,
+            "androidx.room:room-compiler"                   : room_version
+    ]
+
+    deps = { String key ->
+        def version = depsWithVersion[key]
+        if (version == null) throw new IllegalDependencyNotation("Version for library '$key' unknown. Update root build.gradle")
+        "$key:${version}"
     }
 }
 

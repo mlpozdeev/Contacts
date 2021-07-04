@@ -1,14 +1,13 @@
 package com.mlpozdeev.contactsapp.di
 
-import com.mlpozdeev.contactsapp.data.database.di.DatabaseModule
-import com.mlpozdeev.contactsapp.data.network.di.NetworkModule
-import com.mlpozdeev.contactsapp.domain.usecase.LoadContactsUseCase
-import com.mlpozdeev.contactsapp.domain.usecase.LoadContactUseCase
+import com.mlpozdeev.data.di.RepositoryModule
+import com.mlpozdeev.domain.usecase.LoadContactUseCase
+import com.mlpozdeev.domain.usecase.LoadContactsUseCase
 import dagger.Component
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [NetworkModule::class, DatabaseModule::class, ContextModule::class])
+@Component(modules = [ContextModule::class, RepositoryModule::class])
 interface ApplicationComponent {
     fun getLoadContactsUseCase(): LoadContactsUseCase
 
