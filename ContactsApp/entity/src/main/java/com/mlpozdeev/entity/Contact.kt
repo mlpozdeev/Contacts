@@ -1,4 +1,4 @@
-package com.mlpozdeev.domain.model
+package com.mlpozdeev.entity
 
 data class Contact(
     val id: String,

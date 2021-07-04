@@ -1,6 +1,6 @@
 package com.mlpozdeev.domain.repository
 
-import com.mlpozdeev.domain.model.Contact
+import com.mlpozdeev.entity.Contact
 import io.reactivex.Single
 
 interface ContactsRepository {

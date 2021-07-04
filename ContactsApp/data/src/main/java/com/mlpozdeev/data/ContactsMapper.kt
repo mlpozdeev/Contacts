@@ -5,9 +5,9 @@ import com.mlpozdeev.network.dto.ContactDTO
 import com.mlpozdeev.network.dto.PeriodDTO
 import com.mlpozdeev.network.dto.TemperamentDTO
 import com.mlpozdeev.database.entity.TemperamentEntity
-import com.mlpozdeev.domain.model.Contact
-import com.mlpozdeev.domain.model.Period
-import com.mlpozdeev.domain.model.Temperament
+import com.mlpozdeev.entity.Contact
+import com.mlpozdeev.entity.Period
+import com.mlpozdeev.entity.Temperament
 
 fun Contact.toContactEntity(): ContactEntity =
     ContactEntity(

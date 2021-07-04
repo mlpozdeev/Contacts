@@ -32,6 +32,8 @@ android {
 }
 
 dependencies {
+    implementation project(path: ':entity')
+
     //RxJava
     implementation deps("io.reactivex.rxjava2:rxjava")
 

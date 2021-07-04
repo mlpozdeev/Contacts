@@ -1,6 +1,6 @@
 package com.mlpozdeev.contactsapp.presentation.fragments
 
-import com.mlpozdeev.domain.model.Contact
+import com.mlpozdeev.entity.Contact
 import com.mlpozdeev.contactsapp.presentation.fragments.contacts.model.ContactItem
 import com.mlpozdeev.contactsapp.presentation.fragments.profile.model.Profile
 import java.text.SimpleDateFormat

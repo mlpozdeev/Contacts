@@ -1,7 +1,6 @@
 plugins {
     id 'com.android.library'
     id 'kotlin-android'
-    id 'kotlin-kapt'
 }
 
 android {
@@ -34,22 +33,5 @@ android {
 }
 
 dependencies {
-    implementation project(path: ':domain')
-    implementation project(path: ':database')
-    implementation project(path: ':network')
-    implementation project(path: ':entity')
-
-    //RxJava
-    implementation deps("io.reactivex.rxjava2:rxjava")
-
-    //Dagger
-    implementation deps("com.google.dagger:dagger")
-    kapt deps("com.google.dagger:dagger-compiler")
-
-    //Room
-    implementation deps("androidx.room:room-runtime")
-    implementation deps("androidx.room:room-rxjava2")
-
-    //Internet
-    implementation deps("com.squareup.retrofit2:retrofit")
+    
 }

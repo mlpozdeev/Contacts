@@ -7,7 +7,7 @@ import com.mlpozdeev.data.toContactEntity
 import com.mlpozdeev.database.AppDatabase
 import com.mlpozdeev.database.entity.LoadInfoEntity
 import com.mlpozdeev.network.api.ContactsApi
-import com.mlpozdeev.domain.model.Contact
+import com.mlpozdeev.entity.Contact
 import com.mlpozdeev.domain.repository.ContactsRepository
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers

@@ -1,4 +1,4 @@
-package com.mlpozdeev.domain.model
+package com.mlpozdeev.entity
 
 import java.util.*
 

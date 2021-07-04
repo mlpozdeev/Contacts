@@ -2,7 +2,7 @@ package com.mlpozdeev.data.repository
 
 import com.mlpozdeev.data.toContact
 import com.mlpozdeev.database.AppDatabase
-import com.mlpozdeev.domain.model.Contact
+import com.mlpozdeev.entity.Contact
 import com.mlpozdeev.domain.repository.ContactRepository
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
